@@ -130,6 +130,16 @@ Rebuilt from dyno data using 12% drivetrain loss (crank = wheel ÷ 0.88):
 
 Peak crank torque: 418 Nm at 6,000 rpm. Peak wheel power: ~374 WHP at 7,500 rpm. Sub-2,500 rpm is extrapolated — the S54 without VANOS is genuinely weak down low. Sharp cutoff above 7,800 models the DTA hard limiter.
 
+### How to rebuild power.lut from a new dyno run
+
+1. **Anchor point first:** Back-calculate wheel torque at peak power RPM from the headline WHP figure: `Nm = (WHP × 745.7) / RPM`. For the current run: `(373.69 × 745.7) / 7500 = 262 ft-lbs = 355 Nm` at 7,500 rpm.
+2. **Read remaining points:** From the dyno torque trace, read wheel torque in ft-lbs at each RPM point where the curve changes shape.
+3. **Convert to Nm:** `ft-lbs × 1.35582 = Nm`.
+4. **Apply drivetrain loss:** `crank Nm = wheel Nm ÷ 0.88` (12% loss — Drenth sequential + short driveline assumption).
+5. **Extrapolate below 2,500 rpm:** The dyno trace starts mid-run; the S54 without VANOS is genuinely weak below 3,000 rpm so a smooth low taper is correct.
+6. **Extend past limiter:** Add a steep drop to zero by ~8,500 rpm so AC doesn't interpolate weirdly above the 7,800 hard cut.
+7. **Verify:** Peak crank torque should be ~418 Nm at 6,000 rpm; peak wheel power back-calculated from the LUT should match the dyno WHP figure within a few hp.
+
 ---
 
 ## Tyre Compounds
