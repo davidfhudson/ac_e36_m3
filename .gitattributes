@@ -1,0 +1,6 @@
+*.kn5 filter=lfs diff=lfs merge=lfs -text
+*.knh filter=lfs diff=lfs merge=lfs -text
+*.bank filter=lfs diff=lfs merge=lfs -text
+*.dds filter=lfs diff=lfs merge=lfs -text
+*.vao-patch filter=lfs diff=lfs merge=lfs -text
+*.ksanim filter=lfs diff=lfs merge=lfs -text
